@@ -1,0 +1,7 @@
+src/
+*.ts
+*.tsx
+node_modules/
+*.log
+*.test.*
+*.spec.*

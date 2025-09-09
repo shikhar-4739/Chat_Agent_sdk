@@ -1,0 +1,1 @@
+{"version":3,"file":"useChatAgent.d.ts","sourceRoot":"","sources":["../../src/hooks/useChatAgent.ts"],"names":[],"mappings":"AAKA,KAAK,OAAO,GAAG;IAAE,EAAE,EAAE,MAAM,CAAC;IAAC,IAAI,EAAE,MAAM,GAAG,WAAW,GAAG,QAAQ,CAAC;IAAC,IAAI,EAAE,MAAM,CAAA;CAAE,CAAC;AAEnF,wBAAgB,YAAY;;2BAcR,MAAM;EAsEzB"}

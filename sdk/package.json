@@ -1,13 +1,42 @@
 {
-  "name": "sdk",
+  "name": "chat-agent-sdk-contentstack",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A React SDK for integrating chat agents.",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc --project tsconfig.json",
+    "clean": "rm -rf dist"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/chat-agent-sdk.git"
+  },
+  "keywords": [
+    "chat",
+    "sdk",
+    "react",
+    "agent"
+  ],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "dependencies": {
+    "framer-motion": "^12.23.12",
+    "lucide-react": "^0.543.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "typescript": "^5.9.2"
+  }
 }

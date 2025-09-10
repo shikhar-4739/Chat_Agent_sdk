@@ -5,7 +5,7 @@ import { useChatConfig } from "./ChatProvider.js";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send } from "lucide-react";
 
-export default function ChatWidget() {
+export default function ChatWidget({ title = "Sendbird Bot", status = "We’re online..." }: { title?: string; status?: string }) {
   const {
     provider,
     apiKey,
@@ -324,8 +324,8 @@ export default function ChatWidget() {
                   <div className="chatbot-header-left">
                     <div className="chatbot-avatar">🤖</div>
                     <div className="chatbot-header-info">
-                      <div className="chatbot-title">Sendbird Bot</div>
-                      <div className="chatbot-status">We’re online...</div>
+                      <div className="chatbot-title">{title}</div>
+                      <div className="chatbot-status">{status}</div>
                     </div>
                   </div>
                   <button

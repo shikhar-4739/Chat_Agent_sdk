@@ -30,7 +30,7 @@ function App() {
       cs_delivery_token="YOUR_CONTENTSTACK_DELIVERY_TOKEN"
       content_type="YOUR_CONTENTSTACK_CONTENT_TYPE"
     >
-      <ChatWidget />
+      <ChatWidget title="Support Bot" status="Ask us anything!" />
     </ChatProvider>
   );
 }
@@ -56,7 +56,7 @@ You can customize the chat widget's appearance by passing a `theme` prop to `<Ch
     sendButtonColor: "#28a745"
   }}
 >
-  <ChatWidget />
+  <ChatWidget title="Travel Assistant" status="How can I help you today?" />
 </ChatProvider>
 ```
 
@@ -84,7 +84,7 @@ You can customize the chat widget's appearance by passing a `theme` prop to `<Ch
 | Prop         | Type     | Required | Description                        |
 |--------------|----------|----------|------------------------------------|
 | title        | string   | No       | Widget header/title                |
-| placeholder  | string   | No       | Input placeholder text             |
+| status       | string   | No       | Status message below the title     |
 
 ## Customization
 - Style the widget using your own CSS or override the default styles.

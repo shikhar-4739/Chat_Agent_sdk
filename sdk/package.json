@@ -1,6 +1,6 @@
 {
   "name": "chat-agent-sdk-contentstack",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A React SDK for integrating chat agents.",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-org/chat-agent-sdk.git"
+    "url": "https://github.com/shikhar-4739/Chat_Agent_sdk/tree/main/sdk"
   },
   "keywords": [
     "chat",

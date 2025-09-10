@@ -1,1 +1,1 @@
-{"version":3,"file":"ChatWidget.d.ts","sourceRoot":"","sources":["../../src/components/ChatWidget.tsx"],"names":[],"mappings":"AAOA,MAAM,CAAC,OAAO,UAAU,UAAU,4CAyYjC"}
+{"version":3,"file":"ChatWidget.d.ts","sourceRoot":"","sources":["../../src/components/ChatWidget.tsx"],"names":[],"mappings":"AAOA,MAAM,CAAC,OAAO,UAAU,UAAU,CAAC,EAAE,KAAsB,EAAE,MAA0B,EAAE,EAAE;IAAE,KAAK,CAAC,EAAE,MAAM,CAAC;IAAC,MAAM,CAAC,EAAE,MAAM,CAAA;CAAE,2CAyY7H"}

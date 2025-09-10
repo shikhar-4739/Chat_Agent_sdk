@@ -1,36 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# My-App Backend
 
-## Getting Started
+This folder contains the backend code for the Chat Agent SDK, built with [Next.js](https://nextjs.org). It provides API endpoints for interacting with multiple LLM (Large Language Model) providers and integrates with Contentstack via a custom MCP server.
 
-First, run the development server:
+## Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **API Endpoints:** Located in `src/app/api/`, these endpoints power chat, health checks, and configuration for the chatbot SDK.
+- **LLM Providers:** Modular support for OpenAI, Anthropic, and Groq under `src/app/lib/llm/`.
+- **Contentstack Integration:** Uses a custom MCP server for secure and flexible content retrieval, with logic in `src/app/lib/contentstack/mcp.ts`.
+- **Prompt Engineering:** System prompts are dynamically built from Contentstack entries in `src/app/lib/prompts.ts`.
+- **Streaming Responses:** Uses server-sent events (SSE) for real-time chat streaming.
+
+## Folder Structure
+
+```
+my-app/
+  src/
+    app/
+      api/
+        chat/           # Main chat endpoint (streaming, LLM, Contentstack)
+        models/         # Lists available LLM providers and models
+      lib/
+        llm/            # LLM provider adapters (OpenAI, Anthropic, Groq)
+        contentstack/   # Contentstack MCP integration
+        prompts.ts      # Builds system prompts from CMS entries
+        sse.ts          # Utilities for streaming responses
+      layout.tsx        # Next.js root layout
+      page.tsx          # Project info and API route listing
+    public/             # Static assets
+  .env                  # Environment variables (not committed)
+  package.json          # Project dependencies and scripts
+  README.md             # This file
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Key Components
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### API Endpoints
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **`/api/chat`**  
+  Handles chat requests.  
+  - Accepts provider/model/apiKey and Contentstack credentials.
+  - Fetches relevant CMS entries via MCP.
+  - Builds a system prompt and streams LLM responses.
 
-## Learn More
+- **`/api/models`**  
+  Lists supported LLM providers and their available models.
 
-To learn more about Next.js, take a look at the following resources:
+### LLM Providers
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Adapters for each provider are in [`src/app/lib/llm/`](src/app/lib/llm/):
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- [`openai.ts`](src/app/lib/llm/openai.ts): OpenAI GPT models
+- [`anthropic.ts`](src/app/lib/llm/anthropic.ts): Anthropic Claude models
+- [`groq.ts`](src/app/lib/llm/groq.ts): Groq Llama models
+- [`router.ts`](src/app/lib/llm/router.ts): Provider selection logic
 
-## Deploy on Vercel
+All providers implement a common interface for chat and streaming.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Contentstack MCP Integration
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [`contentstack/mcp.ts`](src/app/lib/contentstack/mcp.ts):  
+  Calls the MCP server (see `mcp-server/`) to fetch and search Contentstack entries securely.
+
+### Prompt Engineering
+
+- [`prompts.ts`](src/app/lib/prompts.ts):  
+  Formats CMS entries into a system prompt for the LLM, enforcing strict answer guidelines.
+
+### Streaming
+
+- [`sse.ts`](src/app/lib/sse.ts):  
+  Utility to convert async generators into readable streams for SSE.
+
+## Development
+
+### Running Locally
+
+1. **Install dependencies:**
+   ```sh
+   npm install
+   ```
+
+2. **Set environment variables:**  
+   Create a `.env` file with your Contentstack MCP URL and any required API keys.
+
+3. **Start the development server:**
+   ```sh
+   npm run dev
+   ```
+
+4. **Start the MCP server:**  
+   See [`mcp-server/README.md`](../mcp-server/README.md) for details.
+
+### Building for Production
+
+```sh
+npm run build
+npm start
+```
+
+## Extending
+
+- Add new LLM providers by implementing the interface in [`src/app/lib/llm/base.ts`](src/app/lib/llm/base.ts).
+- Add new API endpoints under `src/app/api/`.
+- Customize prompt logic in [`prompts.ts`](src/app/lib/prompts.ts).
+
+## Related Projects
+
+- [`mcp-server/`](../mcp-server/): Node.js server for Contentstack MCP API proxy.
+- [`sdk/`](../sdk/): React SDK for embedding the chat widget in your frontend.
+
+---
+
+For more details, see the inline code comments and each module's documentation.
